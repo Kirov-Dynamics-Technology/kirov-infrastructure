@@ -140,6 +140,18 @@ async function main() {
     console.log('\nNo custom events recorded yet in this window.');
   }
 
+  /* UTM attribution — which campaign/channel the relevant views came from. */
+  for (const [label, type] of [['UTM campaigns', 'utm_campaign'], ['UTM sources', 'utm_source'], ['UTM medium', 'utm_medium']]) {
+    try {
+      const utm = await api(`/websites/${WEBSITE_ID}/metrics?type=${type}&startAt=${startAt}&endAt=${now}&limit=${TOP}`);
+      const rows = utm.length ? utm.map((p) => [esc(p.x || '(direct/none)'), p.y, p.visitors ?? '']) : [['(direct/none)', '-', '-']];
+      console.log(`\n${label}`);
+      console.log(table([['value', 'pageviews', 'visitors'], ...rows]));
+    } catch (e) {
+      console.log(`\n${label}: ${e.message}`);
+    }
+  }
+
   console.log('\n' + '='.repeat(64));
   console.log('Realtime now:');
   try {
@@ -159,6 +171,8 @@ async function main() {
     topReferrers: refs,
     topCountries: countries,
     events,
+    utmCampaigns: await api(`/websites/${WEBSITE_ID}/metrics?type=utm_campaign&startAt=${startAt}&endAt=${now}&limit=${TOP}`).catch(() => []),
+    utmSources: await api(`/websites/${WEBSITE_ID}/metrics?type=utm_source&startAt=${startAt}&endAt=${now}&limit=${TOP}`).catch(() => []),
   };
   fs.writeFileSync(outPath, JSON.stringify(snapshot, null, 2));
   console.log(`\nSnapshot written: ${outPath} (reuse for trend charting).`);

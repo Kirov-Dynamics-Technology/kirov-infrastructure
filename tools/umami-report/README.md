@@ -44,6 +44,8 @@ Requires Node 18+ (uses global `fetch`; no npm install).
 - **funnel events**: if `tool_used`/`assessment_complete` stay at zero while
   pageviews rise, visitors are reading but not engaging — time to review the
   free-tool placement.
+- **UTM campaigns / sources / medium**: shows which promoted channel actually pulled
+  the views (pre-built links in `docs/utm-promo-kit.md`).
 
 ## Scheduled growth tracking
 

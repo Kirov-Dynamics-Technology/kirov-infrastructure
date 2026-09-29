@@ -74,6 +74,9 @@ of every new Kirov repository).
 | `templates/` | Skeleton projects (react-vite, expo, worker-api, fullstack) |
 | `docs/free-tier-limits.md` | Verified 2026 free allowances across the stack |
 | `docs/tracking-and-analytics.md` | Umami analytics activation + site event wiring |
+| `docs/utm-promo-kit.md` | Ready-made UTM-tagged promotion links for every channel |
+| `docs/search-console-setup.md` | Google Search Console verification + sitemap steps |
+| `docs/custom-domain-setup.md` | kirovdynamics.co.za via Cloudflare, step-by-step |
 | `tools/umami-report/` | Zero-dependency Umami growth report (trends, pages, referrers, funnel) |
 | `examples/` | Small worked examples (usage enforcement, kill switch) |
 
