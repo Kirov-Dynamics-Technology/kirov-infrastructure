@@ -5,13 +5,21 @@ stable keeps charts comparable.
 
 | Event | Context | Fired when | Payload |
 | --- | --- | --- | --- |
-| `assessment_start` | Free Tools | user opens a tool | `{ tool: "tech-score" \| "roi" }` |
-| `assessment_complete` | Free Tools | tool finished | `{ tool, score?, roi? }` |
-| `tool_used` | Free Tools | any free tool used | `{ tool }` |
+| `assessment_start` | Free Tools | Digital Readiness section scrolled into view | `{ tool: "tech-score" }` |
+| `assessment_complete` | Free Tools | ROI calculator first real input (yields result instantly) | `{ tool: "roi" }` |
+| `tool_used` | Free Tools | ROI calculator first real input | `{ tool: "roi" }` |
 | `contact_submit` | All pages | contact/lead form submitted | `{ page }` |
 | `cta_click` | All pages | primary CTA clicked | `{ cta, href, page }` |
 
 Umami also reports `pageview` automatically for every page (no custom payload).
+
+## Reference funnel
+
+```
+pageview → (Digital Readiness viewed) assessment_start
+         → (ROI interacted) tool_used + assessment_complete
+         → (CTA) cta_click → (form sent) contact_submit
+```
 
 ## Rules
 

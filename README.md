@@ -74,6 +74,7 @@ of every new Kirov repository).
 | `templates/` | Skeleton projects (react-vite, expo, worker-api, fullstack) |
 | `docs/free-tier-limits.md` | Verified 2026 free allowances across the stack |
 | `docs/tracking-and-analytics.md` | Umami analytics activation + site event wiring |
+| `tools/umami-report/` | Zero-dependency Umami growth report (trends, pages, referrers, funnel) |
 | `examples/` | Small worked examples (usage enforcement, kill switch) |
 
 ---
