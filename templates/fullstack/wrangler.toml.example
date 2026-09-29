@@ -1,0 +1,33 @@
+# Example Cloudflare Workers + D1 + R2 + Queues configuration.
+# Copy to wrangler.toml and fill in real ids.
+
+name = "kirov-api"
+main = "src/index.ts"
+compatibility_date = "2026-01-01"
+
+[observability]
+enabled = true
+
+# --- D1 bindings ---
+[[d1_databases]]
+binding = "DB"
+database_name = "kirov_db"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+
+# --- R2 bindings ---
+[[r2_buckets]]
+binding = "STORAGE"
+bucket_name = "kirov-files"
+
+# --- Queues (producer/consumer) ---
+[[queues.producers]]
+binding = "JOBS"
+queue = "kirov-jobs"
+
+[[queues.consumers]]
+queue = "kirov-jobs"
+max_batch_size = 10
+max_retries = 3
+dead_letter_queue = "kirov-jobs-dlq"
+
+# --- Local secrets go in .dev.vars ---
